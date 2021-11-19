@@ -1,1 +1,1 @@
-# gamium_token
+Smart contracts related to the Gamium (GMM) token.
