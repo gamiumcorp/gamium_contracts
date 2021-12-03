@@ -37,7 +37,7 @@ abstract contract PausableAddressUpgradeable is Initializable, ContextUpgradeabl
     /**
      * @dev Returns true if the address is paused, and false otherwise.
      */
-    function isAddressPaused(address account) public view virtual returns (bool) {
+    function isAddressPaused(address account) external view virtual returns (bool) {
         return !_addressNotPaused[account];
     }
 

@@ -52,18 +52,18 @@ contract AvatarCrowdsale is Ownable, Pausable {
         cap = _cap;
     }
 
-    function pause() public onlyOwner {
+    function pause() external onlyOwner {
         _pause();
     }
 
-    function unpause() public onlyOwner {
+    function unpause() external onlyOwner {
         _unpause();
     }
 
     /**
     * @dev Mint avatar function
     */
-    function mint(uint _type) public payable whenNotPaused whenNotReceivedYet onlyWhitelisted {
+    function mint(uint _type) external payable whenNotPaused whenNotReceivedYet onlyWhitelisted {
         require(totalMinted + 1 <= cap, "Total cap already minted");
         require(msg.value >= salePrice, "Sent value is less than sale price");
 
@@ -112,7 +112,7 @@ contract AvatarCrowdsale is Ownable, Pausable {
     /**
     * @dev Check address whitelist status
     */
-    function isWhitelist() public view returns (bool) {
+    function isWhitelist() external view returns (bool) {
         return _whitelist[_msgSender()];
     }
 }

@@ -38,46 +38,46 @@ contract GamiumAllocator  is Ownable {
     uint64 private constant _24_months = 63_120_000; // 24 months
 
     // addresses
-    address public airdropAddress = 0xA6f5c0a236718243313652231A0AcA6fe6751611;
-    address public seedAddress = 0xA6f5c0a236718243313652231A0AcA6fe6751611;
-    address public privateAddress = 0xA6f5c0a236718243313652231A0AcA6fe6751611;
-    address public publicAddress = 0xA6f5c0a236718243313652231A0AcA6fe6751611;
-    address public advisorsAddress = 0xA6f5c0a236718243313652231A0AcA6fe6751611;
-    address public stakingAddress = 0xA6f5c0a236718243313652231A0AcA6fe6751611;
-    address public liquidityAddress = 0xA6f5c0a236718243313652231A0AcA6fe6751611;
-    address public treasuryAddress = 0xA6f5c0a236718243313652231A0AcA6fe6751611;
-    address public marketingAddress = 0xA6f5c0a236718243313652231A0AcA6fe6751611;
-    address public teamAddress = 0xA6f5c0a236718243313652231A0AcA6fe6751611;
-    address public exchangesReserveAddress = 0xA6f5c0a236718243313652231A0AcA6fe6751611;
+    address public constant airdropAddress = 0xA6f5c0a236718243313652231A0AcA6fe6751611;
+    address public constant seedAddress = 0xA6f5c0a236718243313652231A0AcA6fe6751611;
+    address public constant privateAddress = 0xA6f5c0a236718243313652231A0AcA6fe6751611;
+    address public constant publicAddress = 0xA6f5c0a236718243313652231A0AcA6fe6751611;
+    address public constant advisorsAddress = 0xA6f5c0a236718243313652231A0AcA6fe6751611;
+    address public constant stakingAddress = 0xA6f5c0a236718243313652231A0AcA6fe6751611;
+    address public constant liquidityAddress = 0xA6f5c0a236718243313652231A0AcA6fe6751611;
+    address public constant treasuryAddress = 0xA6f5c0a236718243313652231A0AcA6fe6751611;
+    address public constant marketingAddress = 0xA6f5c0a236718243313652231A0AcA6fe6751611;
+    address public constant teamAddress = 0xA6f5c0a236718243313652231A0AcA6fe6751611;
+    address public constant exchangesReserveAddress = 0xA6f5c0a236718243313652231A0AcA6fe6751611;
 
     // decimal base
-    uint private decimalBase = 1_000_000_000_000_000_000;
+    uint private constant decimalBase = 1e18;
 
     // tge distribution values
-    uint private airdropTGEValue = 25_000_000 * decimalBase;
-    uint private seedTGEValue = 50_000_000 * decimalBase;
-    uint private privateTGEValue = 100_000_000 * decimalBase;
-    uint private publicTGEValue = 50_000_000 * decimalBase;
-    uint private advisorsTGEValue = 0 * decimalBase; 
-    uint private stakingTGEValue = 0 * decimalBase; 
-    uint private liquidityTGEValue = 1_000_000_000 * decimalBase;
-    uint private treasuryTGEValue = 660_000_000 * decimalBase; 
-    uint private marketingTGEValue = 380_000_000 * decimalBase;
-    uint private teamTGEValue = 0 * decimalBase;
-    uint private exchangesTGEValue = 1_000_000_000 * decimalBase;
+    uint private constant airdropTGEValue = 25_000_000 * decimalBase;
+    uint private constant seedTGEValue = 50_000_000 * decimalBase;
+    uint private constant privateTGEValue = 100_000_000 * decimalBase;
+    uint private constant publicTGEValue = 50_000_000 * decimalBase;
+    uint private constant advisorsTGEValue = 0 * decimalBase; 
+    uint private constant stakingTGEValue = 0 * decimalBase; 
+    uint private constant liquidityTGEValue = 1_000_000_000 * decimalBase;
+    uint private constant treasuryTGEValue = 660_000_000 * decimalBase; 
+    uint private constant marketingTGEValue = 380_000_000 * decimalBase;
+    uint private constant teamTGEValue = 0 * decimalBase;
+    uint private constant exchangesTGEValue = 1_000_000_000 * decimalBase;
 
     // linear distribution values
-    uint private airdropLinearValue = 475_000_000 * decimalBase; // 500M (TOTAL) - 5% TGE
-    uint private seedLinearValue = 950_000_000 * decimalBase; // 1000M (TOTAL) - 5% TGE
-    uint private privateLinearValue = 1_900_000_000 * decimalBase; // 2000M (TOTAL) - 5% TGE
-    uint private publicLinearValue = 950_000_000 * decimalBase; // 1000M (TOTAL) - 5% TGE
-    uint private advisorsLinearValue = 1_000_000_000 * decimalBase; // 1000M (TOTAL)
-    uint private stakingLinearValue = 7_000_000_000 * decimalBase; // 7000M (TOTAL)
-    uint private liquidityLinearValue = 0 * decimalBase; // 0
-    uint private treasuryLinearValue = 15_840_000_000 * decimalBase; // 16500M (TOTAL) - 4% TGE
-    uint private marketingLinearValue = 9_120_00_000 * decimalBase; // 9500M (TOTAL) - 4% TGE
-    uint private teamLinearValue = 9_500_00_000 * decimalBase; // 9500M (TOTAL) 
-    uint private exchangesLinearValue = 0 * decimalBase; // 0
+    uint private constant airdropLinearValue = 475_000_000 * decimalBase; // 500M (TOTAL) - 5% TGE
+    uint private constant seedLinearValue = 950_000_000 * decimalBase; // 1000M (TOTAL) - 5% TGE
+    uint private constant privateLinearValue = 1_900_000_000 * decimalBase; // 2000M (TOTAL) - 5% TGE
+    uint private constant publicLinearValue = 950_000_000 * decimalBase; // 1000M (TOTAL) - 5% TGE
+    uint private constant advisorsLinearValue = 1_000_000_000 * decimalBase; // 1000M (TOTAL)
+    uint private constant stakingLinearValue = 7_000_000_000 * decimalBase; // 7000M (TOTAL)
+    uint private constant liquidityLinearValue = 0 * decimalBase; // 0
+    uint private constant treasuryLinearValue = 15_840_000_000 * decimalBase; // 16500M (TOTAL) - 4% TGE
+    uint private constant marketingLinearValue = 9_120_000_000 * decimalBase; // 9500M (TOTAL) - 4% TGE
+    uint private constant teamLinearValue = 9_500_000_000 * decimalBase; // 9500M (TOTAL) 
+    uint private constant exchangesLinearValue = 0 * decimalBase; // 0
 
     // creating linear distributions config
     Distribution private _airdrop = Distribution(airdropAddress, airdropTGEValue, airdropLinearValue, _Dec_12_2021_1500, _6_months);
@@ -93,7 +93,7 @@ contract GamiumAllocator  is Ownable {
     Distribution private _exchanges = Distribution(exchangesReserveAddress, exchangesTGEValue, exchangesLinearValue, _Dec_12_2021_1500, _0_months);
 
     // categories of tokenomics
-    string[11] private categories = ["Airdrop", "Seed", "Private", "Public", "Advisors", "Staking", "Liquidity", "Treasury", "Marketing", "Team", "Exchanges"];
+    string[11] private constant categories = ["Airdrop", "Seed", "Private", "Public", "Advisors", "Staking", "Liquidity", "Treasury", "Marketing", "Team", "Exchanges"];
     
     // Distributions mapping depending on the category
     mapping(string => uint) public GMMReleased;

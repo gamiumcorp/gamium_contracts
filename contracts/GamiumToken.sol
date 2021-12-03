@@ -14,7 +14,7 @@ contract GamiumToken is ERC20Capped, Ownable {
     event LogNewMinter(address _minter);
 
     // max total Supply to be minted
-    uint256 private _capToken = 50_000_000_000 * 1_000_000_000_000_000_000;
+    uint256 private _capToken = 50 * 10 ** 9 * 1e18;
 
     constructor(string memory name, string memory symbol) ERC20(name, symbol) ERC20Capped(_capToken) {
     }
@@ -32,6 +32,7 @@ contract GamiumToken is ERC20Capped, Ownable {
      * @param newMinter The address of the new minter.
      */
     function setMinter(address newMinter) external onlyOwner {
+        require(newMinter != address(0), "ERC20: Cannot set zero address as minter.");
         minter = newMinter;
         emit LogNewMinter(minter);
     }

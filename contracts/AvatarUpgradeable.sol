@@ -32,7 +32,7 @@ contract AvatarUpgradeable is Initializable, ERC721Upgradeable, ERC721Enumerable
     // Address already minted, only one avatar can be minted to an address.
     mapping (address => bool) private _addressAlreadyMintedTo;
     // Some address can receive unlimited mintings.
-    mapping (address => bool) private _addressUnlimitedMintedTo;
+    mapping (address => bool) private _addressUnlimitedAvatars;
 
     event AvatarMinted(address indexed from, address indexed receiver);
 
@@ -61,33 +61,33 @@ contract AvatarUpgradeable is Initializable, ERC721Upgradeable, ERC721Enumerable
         _baseURIextended = baseURI_;
     }
 
-    function setUnlimitedMintingTo(address account, bool status) external onlyRole(DEFAULT_ADMIN_ROLE) {
-        _addressUnlimitedMintedTo[account] = status;
+    function setUnlimitedAvatars(address account, bool status) external onlyRole(DEFAULT_ADMIN_ROLE) {
+        _addressUnlimitedAvatars[account] = status;
     }
 
     //
     // Pausing and unpausing functions
     //
 
-    function pause() public onlyRole(PAUSER_ROLE) {
+    function pause() external onlyRole(PAUSER_ROLE) {
         _pause();
     }
 
     /**
      * @dev Pause the transfer of one address, this address will not be able to transfer tokens.
      */
-    function pause(address account) public onlyRole(PAUSER_ROLE) {
+    function pause(address account) external onlyRole(PAUSER_ROLE) {
         _pauseAddress(account);
     }
 
-    function unpause() public onlyRole(PAUSER_ROLE) {
+    function unpause() external onlyRole(PAUSER_ROLE) {
         _unpause();
     }
 
     /**
      * @dev Unpause the transfer of one address, this address will be able to transfer tokens.
      */
-    function unpause(address account) public onlyRole(PAUSER_ROLE) {
+    function unpause(address account) external onlyRole(PAUSER_ROLE) {
         _unpauseAddress(account);
     }
 
@@ -95,7 +95,7 @@ contract AvatarUpgradeable is Initializable, ERC721Upgradeable, ERC721Enumerable
     // Minting functions
     //
 
-    function safeMint(address to) public onlyRole(MINTER_ROLE) {
+    function safeMint(address to) external onlyRole(MINTER_ROLE) {
         uint256 tokenId = _tokenIdCounter.current();
         _tokenIdCounter.increment();
         _safeMint(to, tokenId);
@@ -105,8 +105,8 @@ contract AvatarUpgradeable is Initializable, ERC721Upgradeable, ERC721Enumerable
         emit AvatarMinted(_msgSender(), to);
     }
 
-    modifier whenAddressNotMintedTo(address account) {
-        require(!_addressAlreadyMintedTo[account] || _addressUnlimitedMintedTo[account], "Minted: Address already received max minting");
+    modifier whenAddressNotOwnsAvatar(address account) {
+        require(balanceOf(account) == 0 || _addressUnlimitedAvatars[account], "Owned: Address already owns max Avatars");
         _;
     }
 
@@ -114,7 +114,7 @@ contract AvatarUpgradeable is Initializable, ERC721Upgradeable, ERC721Enumerable
         internal
         whenNotPaused
         whenAddressNotPaused(from)
-        whenAddressNotMintedTo(to)
+        whenAddressNotOwnsAvatar(to)
         override(ERC721Upgradeable, ERC721EnumerableUpgradeable)
     {
         super._beforeTokenTransfer(from, to, tokenId);
