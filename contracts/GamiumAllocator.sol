@@ -93,7 +93,7 @@ contract GamiumAllocator  is Ownable {
     Distribution private _exchanges = Distribution(exchangesReserveAddress, exchangesTGEValue, exchangesLinearValue, _Dec_12_2021_1500, _0_months);
 
     // categories of tokenomics
-    string[11] private constant categories = ["Airdrop", "Seed", "Private", "Public", "Advisors", "Staking", "Liquidity", "Treasury", "Marketing", "Team", "Exchanges"];
+    string[11] private categories = ["Airdrop", "Seed", "Private", "Public", "Advisors", "Staking", "Liquidity", "Treasury", "Marketing", "Team", "Exchanges"];
     
     // Distributions mapping depending on the category
     mapping(string => uint) public GMMReleased;
