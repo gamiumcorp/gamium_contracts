@@ -106,7 +106,9 @@ contract AvatarUpgradeable is Initializable, ERC721Upgradeable, ERC721Enumerable
     }
 
     modifier whenAddressNotOwnsAvatar(address account) {
-        require(balanceOf(account) == 0 || _addressUnlimitedAvatars[account], "Owned: Address already owns max Avatars");
+        if (account != address(0)) {
+            require(balanceOf(account) == 0 || _addressUnlimitedAvatars[account], "Owned: Address already owns max Avatars");
+        }
         _;
     }
 
