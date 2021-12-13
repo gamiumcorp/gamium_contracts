@@ -10,7 +10,7 @@ https://gamium.world/pdf/tokenomics.pdf
 **Avatar NFT**
 - Upgradeable contract, deployed with @openzeppelin/truffle-upgrades.
 - Avatar cannot be transfered by default, only if unpause(address) is called by Pauser Role.
-- Only one avatar can be minted to an address, only if setUnlimitedMintingTo(address, true) is set, then 'address' can receive more than one Avatar.
+- Only one avatar can be owned by an address, only if setUnlimitedAvatars(address, true) is set, then 'address' can receive more than one Avatar.
 - unpause(address(0)) to be able to mint.
 - Only minter role, can call safeMint.
 - Grant AvatarCrowdsale minter role. 
